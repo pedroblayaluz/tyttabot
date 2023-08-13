@@ -6,11 +6,17 @@ from telegram import ReplyKeyboardMarkup, ReplyKeyboardRemove, Update
 from telegram.ext import ContextTypes, ConversationHandler
 from glob import glob
 
-logging.basicConfig(format="%(asctime)s - %(name)s - %(levelname)s - %(message)s", level=logging.INFO)
+logging_format = "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+logging.basicConfig(format=logging_format,
+                    level=logging.INFO)
 logger = logging.getLogger(__name__)
 
 users = {}
-separator_dictionary = {"en-US":"comma", "es-ES":"coma", "fr-FR":"virgule", "de-DE":"komma","pt-BR":"vírgula", "pt-PT":"vírgula"}
+separator_dictionary = {"en-US": "comma",
+                        "es-ES": "coma",
+                        "fr-FR": "virgule",
+                        "de-DE": "komma","pt-BR":"vírgula",
+                        "pt-PT": "vírgula"}
 
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE) -> int:
     await update.message.reply_text(
